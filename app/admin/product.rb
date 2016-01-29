@@ -1,15 +1,16 @@
 ActiveAdmin.register Product do
 
+  permit_params :title, :description, :price, :avatar
 
-
-  controllers do
-
-    def index
-
+  index do
+    column "Photo" do |product|
+      image_tag product.avatar, :style => "width: 15%"
     end
-
+    column :title
+    column :description
+    column :price
+    actions
   end
-
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -24,5 +25,14 @@ ActiveAdmin.register Product do
 #   permitted
 # end
 
+  form do |f|
+    f.inputs do
+      f.input :title
+      f.input :description
+      f.input :price
+      f.input :avatar
+    end
+    f.actions
+  end
 
 end

@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 gem 'activeadmin', '~> 1.0.0.pre2'
+gem 'carrierwave'
 
 
 
