@@ -1,6 +1,6 @@
 ActiveAdmin.register Product do
 
-  permit_params :title, :description, :price, :avatar
+  permit_params :title, :description, :price, :avatar, :client_id
 
   index do
     column "Photo" do |product|
@@ -31,6 +31,7 @@ ActiveAdmin.register Product do
       f.input :description
       f.input :price
       f.input :avatar
+      f.input :client
     end
     f.actions
   end
