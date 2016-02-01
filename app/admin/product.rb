@@ -4,14 +4,35 @@ ActiveAdmin.register Product do
 
   index do
     column "Photo" do |product|
-      image_tag product.avatar, :style => "width: 15%"
+      image_tag product.avatar, :style => "width: 70px"
     end
     column :title
     column :description
-    column :price
+    column :price, :sortable => :price do |currency|
+      number_to_currency currency.price
+    end
     actions
   end
 
+
+  show do
+    attributes_table do
+      row :title
+      row :description
+      row :price
+      row :avatar do
+        image_tag product.avatar.url, :style => "width: 15%"
+      end
+      row :client
+      row :category
+      row 'Tags', only: :show, if: proc { product.tags.any? } do
+      table_for product.tags do |t|
+        t.column('Name') { |tag| tag.name } # it's depends what you want to display
+      end
+      end
+    end
+    active_admin_comments
+  end
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -33,7 +54,7 @@ ActiveAdmin.register Product do
       f.input :avatar
       f.input :client
       f.input :category
-      f.input :tag_ids, as: :check_boxes, collection: Tag.all.map { |u| [ u.name, u.id ]}, include_blank: false
+      f.input :tag_ids, as: :check_boxes, collection: Tag.all.map { |t| [ t.name, t.id ]}, include_blank: false
     end
     f.actions
   end
