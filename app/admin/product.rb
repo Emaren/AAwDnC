@@ -1,6 +1,9 @@
 ActiveAdmin.register Product do
 
-  permit_params :title, :description, :price, :avatar, :client_id, :category_id, tag_ids: []
+  scope :unreleased
+  scope :released
+
+  permit_params :title, :description, :price, :avatar, :client_id, :category_id, :released_at, tag_ids: []
 
   index do
     column "Photo" do |product|
@@ -8,8 +11,11 @@ ActiveAdmin.register Product do
     end
     column :title
     column :description
+    column "Release Date", :released_at
     column :price, :sortable => :price do |currency|
-      number_to_currency currency.price
+      div :class => "price" do
+        number_to_currency currency.price
+      end
     end
     actions
   end
@@ -65,6 +71,7 @@ ActiveAdmin.register Product do
       f.input :avatar
       f.input :client
       f.input :category
+      f.input :released_at
       f.input :tag_ids, as: :check_boxes, collection: Tag.all.map { |t| [ t.name, t.id ]}, include_blank: false
     end
     f.actions

@@ -2,6 +2,15 @@ class Product < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+
+
+  scope :unreleased, -> {
+  where(:released_at => nil)
+}
+  scope :released, -> {
+  where(:released_at => !nil)
+}
+
   validates :title, {presence:   true,
                      uniqueness: {message: "Title exists already!"},
                      length:     {minimum: 3}}
