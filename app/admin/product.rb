@@ -25,11 +25,22 @@ ActiveAdmin.register Product do
       end
       row :client
       row :category
+
+      # row 'Tags', product.tags.each do |tags|
+      #   tags.id
+      # end
+
+      # product.tags.each do |tags|
+      #   row :tags do tags.name
+      #   end
+      # end
+
       row 'Tags', only: :show, if: proc { product.tags.any? } do
       table_for product.tags do |t|
-        t.column('Name') { |tag| tag.name } # it's depends what you want to display
+        t.column('') { |tag| tag.name } # it's depends what you want to display
       end
       end
+
     end
     active_admin_comments
   end

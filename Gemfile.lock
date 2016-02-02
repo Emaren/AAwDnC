@@ -52,6 +52,7 @@ GEM
     arbre (1.0.3)
       activesupport (>= 3.0.0)
     arel (6.0.3)
+    awesome_print (1.6.1)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -203,6 +204,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin (~> 1.0.0.pre2)
+  awesome_print
   byebug
   carrierwave
   coffee-rails (~> 4.1.0)

@@ -1,9 +1,11 @@
 class Category < ActiveRecord::Base
 
+  validates :name, presence: true,
+  uniqueness: true
+
   belongs_to :product
 
-  validates :name, presence: true,
-                   uniqueness: true
+  has_many :packets
 
 
 end
