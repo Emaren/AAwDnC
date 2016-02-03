@@ -1,0 +1,36 @@
+<% @product = Product.all %>
+<% @category = Category.all%>
+<h1>Product per Category</h1>
+<table>
+    <tr>
+        <th>Category Name</th>
+        <th></th>
+    </tr>
+    <% @category.each do |category| %>
+    <tr>
+        <td><%= category.name %></td>
+        <td>
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Tags</th>
+                </tr>
+                <% list = Product.where("category_id=#{category.id}") %>
+                <% list.each do |l|%>
+                <% tags = Tagging.where("product_id=#{l.id}") %>
+                <tr>
+                    <td width="25%">
+                        <%= l.title %>
+                    </td>
+                    <td>
+                        <% tags.each do |t| %>
+                        <%= Tag.find(t.id).name %>
+                        <% end %>
+                    </td>
+                </tr>
+                <% end %>
+            </table>
+        </td>
+    </tr>
+    <% end %>
+</table>

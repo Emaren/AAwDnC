@@ -11,14 +11,7 @@ ActiveAdmin.register Packet do
     f.actions
   end
 
-  index do
-    selectable_column
-    column :category
-    column :product
-    column :tag
-    actions
-    
-  end
+
 
   controller do
 
@@ -37,6 +30,9 @@ ActiveAdmin.register Packet do
   end
 
 
+  index do
+     div render '/admin/product/product'
+   end
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
