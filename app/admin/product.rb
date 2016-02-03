@@ -7,8 +7,10 @@ ActiveAdmin.register Product do
 
   index do
     column "Photo" do |product|
+      div :class => "photo" do
       image_tag product.avatar, :style => "width: 70px"
-    end
+        end
+      end
     column :title
     column :description
     column "Release Date", :released_at
@@ -19,7 +21,6 @@ ActiveAdmin.register Product do
     end
     actions
   end
-
 
   show do
     attributes_table do
@@ -50,6 +51,7 @@ ActiveAdmin.register Product do
     end
     active_admin_comments
   end
+
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -64,14 +66,18 @@ ActiveAdmin.register Product do
 # end
 
   form do |f|
-    f.inputs do
+    f.inputs "Product Info" do
       f.input :title
       f.input :description
       f.input :price
       f.input :avatar
-      f.input :client
       f.input :category
       f.input :released_at
+    end
+    f.inputs "Client" do
+      f.input :client
+    end
+    f.inputs "Tags" do
       f.input :tag_ids, as: :check_boxes, collection: Tag.all.map { |t| [ t.name, t.id ]}, include_blank: false
     end
     f.actions

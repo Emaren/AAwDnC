@@ -6,7 +6,7 @@ ActiveAdmin.register Packet do
     f.inputs do
       f.input :category
       f.input :product
-      f.input :tags, as: :check_boxes, collection: Tag.all.map { |t| [ t.name, t.id ]}, include_blank: fals
+      f.input :tags, as: :check_boxes, collection: Tag.all.map { |t| [ t.name, t.id ]}, include_blank: false
     end
     f.actions
   end
@@ -17,7 +17,7 @@ ActiveAdmin.register Packet do
     column :product
     column :tag
     actions
-
+    
   end
 
   controller do
@@ -35,6 +35,8 @@ ActiveAdmin.register Packet do
     end
 
   end
+
+
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
