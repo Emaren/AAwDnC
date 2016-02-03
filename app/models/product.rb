@@ -2,13 +2,11 @@ class Product < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-
-
   scope :unreleased, -> {
-  where(:released_at => nil)
+  where('released_at >= ?', Date.today)
 }
   scope :released, -> {
-  where(:released_at => !nil)
+  where('released_at <= ?', Date.today)
 }
 
   validates :title, {presence:   true,
@@ -20,6 +18,8 @@ class Product < ActiveRecord::Base
 
   validates :price, presence: true
 
+  validates :unreleased, presence: true
+  validates :released, presence: true
 
   belongs_to :client
   belongs_to :category

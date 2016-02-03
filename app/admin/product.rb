@@ -3,6 +3,7 @@ ActiveAdmin.register Product do
   scope :unreleased
   scope :released
 
+
   permit_params :title, :description, :price, :avatar, :client_id, :category_id, :released_at, tag_ids: []
 
   index do
