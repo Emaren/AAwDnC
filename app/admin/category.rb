@@ -1,5 +1,5 @@
 ActiveAdmin.register Category do
-
+ menu parent: "Settings"
   permit_params :name
 
 

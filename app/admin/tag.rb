@@ -1,4 +1,5 @@
 ActiveAdmin.register Tag do
+  menu parent: "Settings"
 
   permit_params :name
 # See permitted parameters documentation:

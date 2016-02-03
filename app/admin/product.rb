@@ -22,6 +22,10 @@ ActiveAdmin.register Product do
     actions
   end
 
+  action_item only: :show do
+    link_to 'New Product', new_admin_product_path(product)
+  end
+
   show do
     attributes_table do
       row :title
